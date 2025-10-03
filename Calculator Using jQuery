@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Using jQuery</title>
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon"
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgx0-eL0uJeWZRj9rFS0OBDXfRNNx1v1CxSabthDY4np93MTLomnffwSEIXHnuxbadWuBbIs10qm7G519B2PTlPK-fuhvWBI9XQu_Qeg5t0tsxbPvQNpK3AO4WeiuFHTOQEOoBtdBqiuG4XDRdaO49iwAjepVuedd6vwYbYxFCGvhTmHVg6F297zuAPII/s1600/favicon.png"
+        type="image/x-icon">
+
+    <!-- CSS Style -->
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap);
+
+        .container,
+        section {
+            background: var(--s-primary-color)
+        }
+
+        .container-center,
+        .container-top {
+            gap: 20px;
+            margin-bottom: 20px;
+            display: flex
+        }
+
+        :root {
+            --s-primary-color: linear-gradient(#f6f6f6, #dfe0df, #f2f2f2);
+            --s-secondry-color: rgba(255, 255, 255, 0.5);
+            --s-accent-color: #1a78f4;
+            --s-hover-color: #010201;
+            --s-light-text: white;
+            --s-dark-text: #0e0f16
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            font-family: "Alan Sans", sans-serif !important
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            position: relative
+        }
+
+        section>p {
+            position: absolute;
+            bottom: 25px;
+            color: gray;
+            font-size: 12px;
+            font-weight: 300
+        }
+
+        .container {
+            padding: 36px 26px;
+            border: 1.5px solid var(--s-secondry-color);
+            border-radius: 25px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, .05)
+        }
+
+        .container-center input,
+        .container-top button {
+            border-radius: 10px;
+            height: 45px;
+            margin: 0;
+            outline: 0
+        }
+
+        .container-top {
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .container-top h1 {
+            font-size: 42px;
+            font-weight: 400;
+            color: var(--s-dark-text);
+            position: relative
+        }
+
+        .container-top h1::before {
+            content: "Result:";
+            font-size: 10px;
+            font-weight: 300;
+            color: rgba(128, 128, 128, .5);
+            position: absolute;
+            top: -10px
+        }
+
+        .container-top button {
+            width: 20%;
+            color: var(--s-light-text);
+            font-size: 14px;
+            padding: 0;
+            background-color: var(--s-dark-text);
+            border: none;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .container-top button:hover {
+            opacity: 0.7
+        }
+
+        .container-center {
+            width: 260px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .container-center input {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--s-dark-text);
+            padding: 0 16px;
+            border: 1px solid rgba(255, 255, 255, 0);
+            background-color: var(--s-secondry-color)
+        }
+
+        .container-center input:focus {
+            border: 1px solid rgba(255, 255, 255);
+        }
+
+        .container-center input::placeholder {
+            color: rgba(128, 128, 128, .5)
+        }
+
+        .container-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px
+        }
+
+        .container-bottom button {
+            width: 100%;
+            height: 45px;
+            color: var(--s-light-text);
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            border-radius: 10px;
+            background: var(--s-accent-color);
+            outline: 0;
+            border: none;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .container-bottom button:hover {
+            opacity: 0.7
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="container-top">
+                <h1 id="result">0</h1>
+                <button id="clear">Clear</button>
+            </div>
+
+            <div class="container-center">
+                <input type="text" id="num_1" placeholder="Enter first number">
+                <input type="text" id="num_2" placeholder="Enter second number">
+            </div>
+
+            <div class="container-bottom">
+                <button id="add">+</button>
+                <button id="sub">-</button>
+                <button id="mul">x</button>
+                <button id="div">/</button>
+            </div>
+
+        </div>
+
+        <p>Created by <span style="color: var(--s-accent-color);cursor: pointer;text-decoration: underline;">Sadique
+                Ansari</span></p>
+    </section>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // Allow only numbers in inputs
+            $("#num_1, #num_2").on("input", function () {
+                this.value = this.value.replace(/[^0-9]/g, ''); // only digits allowed
+            });
+
+            $("#add").on("click", function () {
+                let num_1 = Number($("#num_1").val());
+                let num_2 = Number($("#num_2").val());
+                let result = num_1 + num_2;
+                $("#result").html(result);
+            });
+
+            $("#sub").on("click", function () {
+                let num_1 = Number($("#num_1").val());
+                let num_2 = Number($("#num_2").val());
+                let result = num_1 - num_2;
+                $("#result").html(result);
+            });
+
+            $("#mul").on("click", function () {
+                let num_1 = Number($("#num_1").val());
+                let num_2 = Number($("#num_2").val());
+                let result = num_1 * num_2;
+                $("#result").html(result);
+            });
+
+            $("#div").on("click", function () {
+                let num_1 = Number($("#num_1").val());
+                let num_2 = Number($("#num_2").val());
+                let result = num_2 === 0
+                    ? "Error: Cannot divide by zero"
+                    : Math.trunc(num_1 / num_2); // integer division
+                $("#result").html(result);
+            });
+
+            // Clear button
+            $("#clear").on("click", function () {
+                $("#num_1").val("");
+                $("#num_2").val("");
+                $("#result").html("0");
+            });
+        });
+    </script>
+</body>
+
+</html>
