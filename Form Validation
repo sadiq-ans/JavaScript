@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form Validation</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+	<!-- Customize CSS -->
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			text-decoration: none;
+			list-style: none;
+		}
+
+		body {
+			font-family: "DM Sans", sans-serif;
+			background: linear-gradient(#f6f6f6, #dfe0df, #f2f2f2);
+		}
+
+		.form-container {
+			max-width: 600px;
+			margin: 40px auto;
+			background: #fff;
+			border-radius: 10px;
+			padding: 30px;
+		}
+
+		input::placeholder {
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="form-container">
+		<h1 class="h3 text-left my-4">Form Validation</h1>
+		<div class="container">
+			<form action="" id="myForm">
+				<div class="row">
+
+					<!-- NAME -->
+					<div class="col-12">
+						<div class="mb-3">
+							<label for="name" class="form-label fw-bold">Full Name:<span class="text-danger">*</span></label>
+							<input type="text" name="name" class="form-control" id="name" placeholder="Enter you full name..." required>
+									</div>
+						</div>
+
+						<!-- EMAIL -->
+						<div class="col-12">
+							<div class="mb-3">
+								<label for="mail" class="form-label fw-bold">Email: <span class="text-danger">*</span></label>
+								<input type="email" name="mail" class="form-control" id="mail" placeholder="name@example.com" required>
+								<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+							</div>
+						</div>
+
+						<!-- AGE -->
+						<div class="col-12">
+							<div class="mb-3">
+								<label for="age" class="form-label fw-bold">Age: <span class="text-danger">*</span></label>
+								<input type="number" name="age" class="form-control" id="age" placeholder="What is your age?" required>
+									</div>
+							</div>
+
+							<!-- GENDER INLINE -->
+							<div class="col-12">
+								<div class="mb-3">
+									<span class="fw-bold">Gender: <span class="text-danger">*</span></span>
+									<div class="d-flex align-items-center mt-1">
+										<div class="form-check me-3">
+											<input type="radio" id="male" name="customRadio" class="form-check-input" value="male">
+											<label class="form-check-label" for="male">Male</label>
+										</div>
+										<div class="form-check me-3">
+											<input type="radio" id="female" name="customRadio" class="form-check-input" value="female">
+											<label class="form-check-label" for="female">Female</label>
+										</div>
+										<div class="form-check">
+											<input type="radio" id="ogender" name="customRadio" class="form-check-input" value="others">
+											<label class="form-check-label" for="ogender">Others</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- END GENDER INLINE -->
+
+							<!-- COURSE -->
+							<div class="col-12">
+								<div class="mb-3">
+									<label for="course" class="form-label fw-bold">Course: <span class="text-danger">*</span></label>
+									<select name="course" class="form-select" id="course" required>
+											<option value="" disabled selected>Please select your course...</option>
+											<option value="1">Graphic Design</option>
+											<option value="2">UI/UX Design</option>
+											<option value="3">AI/ML Data Science</option>
+											<option value="4">Cyber Security</option>
+										</select>
+								</div>
+							</div>
+
+							<!-- Location -->
+							<div class="col-12">
+								<div class="mb-3">
+									<label for="branch" class="form-label fw-bold">Branch: <span class="text-danger">*</span></label>
+									<select name="branch" class="form-select" id="branch" required>
+											<option value="" disabled selected>Please select your branch...</option>
+											<option value="1">Surat</option>
+											<option value="2">Ahmedabad</option>
+											<option value="3">Rajkot</option>
+											<option value="4">Vadodara</option>
+										</select>
+								</div>
+							</div>
+
+							<!-- PASSWORD -->
+							<div class="col-md-6">
+								<div class="mb-3">
+									<label for="pass" class="form-label fw-bold">Password: <span class="text-danger">*</span></label>
+									<input type="password" name="pass" class="form-control" id="pass" placeholder="Min 8 characters" required>
+								</div>
+								</div>
+
+								<!-- CONFIRM PASSWORD -->
+								<div class="col-md-6">
+									<div class="mb-3">
+										<label for="cPass" class="form-label fw-bold">Confirm Password: <span class="text-danger">*</span></label>
+										<input type="password" name="cPass" class="form-control" id="cPass" placeholder="Re-enter password" required>
+									</div>
+									</div>
+
+									<!-- TERMS CHECKBOX -->
+									<div class="col-12">
+										<div class="mb-3">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" style="font-size:14px;" for="exampleCheck1">I accept <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a> </label>
+											</div>
+										</div>
+									</div>
+
+									<!-- SUBMIT BUTTON -->
+									<div class="text-end my-3">
+										<button class="btn btn-primary w-100" id="add">Submit</button>
+									</div>
+								</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- JS Libraries -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- FORM VALIDATION SCRIPT -->
+	<script>
+		$(document).ready(function () {
+			$("#add").on("click", function (e) {
+				e.preventDefault();
+
+				const form = document.getElementById("myForm");
+
+				let name = document.getElementById("name").value.trim();
+				let email = document.getElementById("mail").value.trim();
+				let age = document.getElementById("age").value.trim();
+				let course = document.getElementById("course").value;
+				let branch = document.getElementById("branch").value;
+				let pass = document.getElementById("pass").value.trim();
+				let cPass = document.getElementById("cPass").value.trim();
+				let gender = $("input[name='customRadio']:checked").val();
+				let terms = document.getElementById("exampleCheck1").checked;
+
+				console.log(name, email, age, course, pass, cPass, gender, terms);
+
+				let emailRgx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+				if (name === "") {
+          Swal.fire({
+						title: "Name is required!!!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (!emailRgx.test(email)) {
+          Swal.fire({
+						title: "Enter a valid email!!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (age === "" || isNaN(age)) {
+          Swal.fire({
+						title: "Please Enter your age!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+				
+				if (age < 18 || age > 120) {
+				Swal.fire({
+				title: "Enter valid age 18+!",
+				showClass: {
+				popup: `
+				animate__animated
+				animate__fadeInUp
+				animate__faster
+				`
+				},
+				hideClass: {
+				popup: `
+				animate__animated
+				animate__fadeOutDown
+				animate__faster
+				`
+				}
+				});
+				return;
+				}
+
+				if (!gender) {
+          Swal.fire({
+						title: "Select your gender!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (course === "") {
+          Swal.fire({
+						title: "Select any course!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (branch === "") {
+          Swal.fire({
+						title: "Select any branch!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (pass.length < 8) {
+          Swal.fire({
+						title: "Password must be at least 8 characters long!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (pass !== cPass) {
+          Swal.fire({
+						title: "Password & confirmed password should be the same!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				if (!terms) {
+					Swal.fire({
+						title: "You must accept Terms & Conditions!",
+						showClass: {
+							popup: `
+								animate__animated
+								animate__fadeInUp
+								animate__faster
+							`
+						},
+						hideClass: {
+							popup: `
+								animate__animated
+								animate__fadeOutDown
+								animate__faster
+							`
+						}
+					});
+					return;
+				}
+
+				Swal.fire({
+					icon: "success",
+					title: "Form submitted successfully!, We will update you shortly via email.",
+					showConfirmButton: false,
+					timer: 2000
+				});
+
+				setTimeout(() => {
+					form.submit();
+				}, 2000);
+			});
+		});
+	</script>
+</body>
+
+</html>
